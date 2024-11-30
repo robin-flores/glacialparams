@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ynpjgmnhjw16"]
-
-[ext_resource type="Script" path="res://Scenes/character_body_3d.gd" id="1_vampy"]
-
-[node name="CharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_vampy")
