@@ -8,6 +8,8 @@ const JUMP_VELOCITY = 4.5
 @export var _deceleration : float  = 4
 var _xz_velocity : Vector3
 
+@onready var _animation : AnimationTree = $AnimationTree
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _direction : Vector3
 
@@ -32,6 +34,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_xz_velocity = _xz_velocity.move_toward (Vector3.ZERO * _walking_speed, _deceleration * delta)
 		
+	_animation.set("parameters/Locomotion/blend_position", _xz_velocity.length() / _walking_speed)
 
 	velocity.x = _xz_velocity.x
 	velocity.z = _xz_velocity.z
