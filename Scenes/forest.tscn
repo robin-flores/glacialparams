@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfflhqxd8ykcf"]
+[gd_scene load_steps=8 format=3 uid="uid://bfflhqxd8ykcf"]
 
 [ext_resource type="Script" path="res://Scripts/player_owl.gd" id="1_req0d"]
 [ext_resource type="PackedScene" uid="uid://bvk28x4sh1bjb" path="res://Scenes/crow.tscn" id="1_so6em"]
 [ext_resource type="Script" path="res://Scripts/player_crow.gd" id="2_sod4a"]
 [ext_resource type="PackedScene" uid="uid://bcxefilpx2ra0" path="res://Scenes/owl_v_1.tscn" id="4_odf1p"]
-[ext_resource type="Script" path="res://Scripts/crow.gd" id="5_ro8ex"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbuqq"]
 albedo_color = Color(0.279095, 0.408811, 0.224335, 1)
@@ -39,10 +38,6 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_q402b")
 
 [node name="crow_v1" parent="." instance=ExtResource("1_so6em")]
-script = ExtResource("5_ro8ex")
-_walking_speed = 8.0
-_acceleration = 12.0
-_deceleration = 14.0
 
 [node name="owl_v1" parent="." instance=ExtResource("4_odf1p")]
 transform = Transform3D(0.99999, 0, -0.00439821, 0, 1, 0, 0.00439821, 0, 0.99999, -4.16464, 0, 0)

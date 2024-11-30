@@ -11,6 +11,7 @@ var _angle_difference : float
 var _xz_velocity : Vector3
 
 @onready var _animation : AnimationTree = $AnimationTree
+@onready var _state_machine : AnimationNodeStateMachinePlayback = _animation["parameters/playback"]
 @onready var _rig : Node3D = $rig
 
 
@@ -19,6 +20,11 @@ var _direction : Vector3
 
 func move(direction : Vector3):
 	_direction = direction
+	
+func jump():
+	if is_on_floor():
+		_state_machine.travel("rig_v3_jump_start")
+		velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta: float) -> void:
 	
@@ -31,11 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump_1") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y -= gravity * delta
 
 
 	if _direction:
