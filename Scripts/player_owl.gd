@@ -5,10 +5,6 @@ extends Node
 var _input_direction : Vector2
 var _move_direction : Vector3
 
-func _input(event : InputEvent):
-	if event.is_action_pressed("jump_2"):
-		_character2.jump()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float):
