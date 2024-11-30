@@ -1,8 +1,12 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+@export var _walking_speed : float = 1
+@export var _acceleration : float = 2
+@export var _deceleration : float  = 4
+var _xz_velocity : Vector3
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _direction : Vector3
@@ -11,6 +15,9 @@ func move(direction : Vector3):
 	_direction = direction
 
 func _physics_process(delta: float) -> void:
+	
+	_xz_velocity = Vector3(velocity.x, 0, velocity.z)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -21,10 +28,12 @@ func _physics_process(delta: float) -> void:
 
 
 	if _direction:
-		velocity.x = _direction.x * SPEED
-		velocity.z = _direction.z * SPEED
+		_xz_velocity = _xz_velocity.move_toward (_direction * _walking_speed, _acceleration * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		_xz_velocity = _xz_velocity.move_toward (Vector3.ZERO * _walking_speed, _deceleration * delta)
+		
+
+	velocity.x = _xz_velocity.x
+	velocity.z = _xz_velocity.z
 
 	move_and_slide()
