@@ -24,6 +24,8 @@ func move(direction : Vector3):
 func jump():
 	if is_on_floor():
 		_state_machine.travel("rig_v3_jump_start")
+		
+func _apply_jump_velocity():
 		velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta: float) -> void:
