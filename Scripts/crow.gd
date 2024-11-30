@@ -6,7 +6,7 @@ const JUMP_VELOCITY = 4.5
 @export var _walking_speed : float = 1
 @export var _acceleration : float = 2
 @export var _deceleration : float  = 4
-@export var _rotation_speed : float = PI * 2
+@export var _rotation_speed : float = PI * 3
 var _angle_difference : float
 var _xz_velocity : Vector3
 
@@ -39,7 +39,10 @@ func _physics_process(delta: float) -> void:
 
 
 	if _direction:
-		_xz_velocity = _xz_velocity.move_toward (_direction * _walking_speed, _acceleration * delta)
+		if _direction.dot(velocity) >= 0:
+			_xz_velocity = _xz_velocity.move_toward (_direction * _walking_speed, _acceleration * delta)
+		else:
+			_xz_velocity = _xz_velocity.move_toward (_direction * _walking_speed, _deceleration * delta)
 	else:
 		_xz_velocity = _xz_velocity.move_toward (Vector3.ZERO * _walking_speed, _deceleration * delta)
 		
