@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfflhqxd8ykcf"]
+[gd_scene load_steps=9 format=3 uid="uid://bfflhqxd8ykcf"]
 
 [ext_resource type="Script" path="res://Scripts/player_owl.gd" id="1_req0d"]
 [ext_resource type="Script" path="res://Scripts/player_crow.gd" id="2_sod4a"]
-[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow2.tscn" id="3_mrm4d"]
+[ext_resource type="Script" path="res://Scripts/magnet.gd" id="3_m6bot"]
+[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow_v_2.tscn" id="3_mrm4d"]
 [ext_resource type="PackedScene" uid="uid://t1kehgnujdqv" path="res://Scenes/owl_v_2.tscn" id="4_7xk55"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbuqq"]
@@ -27,6 +28,9 @@ _camera = NodePath("../Camera3D")
 script = ExtResource("2_sod4a")
 _character1 = NodePath("../crow_v2")
 _camera = NodePath("../Camera3D")
+
+[node name="Magnet" type="Node" parent="."]
+script = ExtResource("3_m6bot")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
