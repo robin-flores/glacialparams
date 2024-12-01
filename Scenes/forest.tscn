@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfflhqxd8ykcf"]
 
 [ext_resource type="Script" path="res://Scripts/player_owl.gd" id="1_req0d"]
-[ext_resource type="PackedScene" uid="uid://bvk28x4sh1bjb" path="res://Scenes/crow.tscn" id="1_so6em"]
 [ext_resource type="Script" path="res://Scripts/player_crow.gd" id="2_sod4a"]
-[ext_resource type="PackedScene" uid="uid://bcxefilpx2ra0" path="res://Scenes/owl_v_1.tscn" id="4_odf1p"]
+[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow2.tscn" id="3_mrm4d"]
+[ext_resource type="PackedScene" uid="uid://t1kehgnujdqv" path="res://Scenes/owl_v_2.tscn" id="4_7xk55"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbuqq"]
 albedo_color = Color(0.279095, 0.408811, 0.224335, 1)
@@ -20,12 +20,12 @@ size = Vector3(50, 0, 50)
 
 [node name="Player_Owl" type="Node" parent="." node_paths=PackedStringArray("_character2", "_camera")]
 script = ExtResource("1_req0d")
-_character2 = NodePath("../owl_v1")
+_character2 = NodePath("../owl_v2")
 _camera = NodePath("../Camera3D")
 
 [node name="Player_Crow" type="Node" parent="." node_paths=PackedStringArray("_character1", "_camera")]
 script = ExtResource("2_sod4a")
-_character1 = NodePath("../crow_v1")
+_character1 = NodePath("../crow_v2")
 _camera = NodePath("../Camera3D")
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -37,13 +37,9 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_q402b")
 
-[node name="crow_v1" parent="." instance=ExtResource("1_so6em")]
+[node name="crow_v2" parent="." instance=ExtResource("3_mrm4d")]
 
-[node name="owl_v1" parent="." instance=ExtResource("4_odf1p")]
-transform = Transform3D(0.99999, 0, -0.00439821, 0, 1, 0, 0.00439821, 0, 0.99999, -4.16464, 0, 0)
-_walking_speed = 8.0
-_acceleration = 12.0
-_deceleration = 14.0
+[node name="owl_v2" parent="." instance=ExtResource("4_7xk55")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(0.999946, 0.0104194, 0, -0.0104194, 0.999946, 0, 0, 0, 1, 5.72, 2, 0)
