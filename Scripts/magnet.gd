@@ -11,16 +11,15 @@ extends Node
 @onready var owl_animation_tree = owl_v2.get_node("AnimationTree")  # AnimationTree de owl_v2.
 
 var owl_pos_anterior: Vector3  # Guarda la posición anterior de owl_v2 para calcular el movimiento.
-var jugador_moviendo: bool = false  # Indica si el jugador está controlando a owl_v2.
 
 # Función que verifica la distancia y maneja los sonidos.
 func _process(_delta):
 	var distancia = crow_v2.global_position.distance_to(owl_v2.global_position)
 
-	if distancia > rango_maximo and not jugador_moviendo:
+	if distancia > rango_maximo:
 		manejar_sonido(sonido_rango_max, sonido_rango_min)  # Activar sonido máximo.
 		mover_owl_v2_hacia(crow_v2.global_position)
-	elif distancia < rango_minimo and not jugador_moviendo:
+	elif distancia < rango_minimo:
 		manejar_sonido(sonido_rango_min, sonido_rango_max)  # Activar sonido mínimo.
 		mover_owl_v2_a_rango(rango_minimo)
 	else:
@@ -34,11 +33,6 @@ func mover_owl_v2_hacia(destino: Vector3):
 	# Movimiento hacia el destino.
 	var direccion = (destino - owl_v2.global_position).normalized()
 	owl_pos_anterior = owl_v2.global_position  # Guarda la posición actual antes de mover.
-
-	# Mirar hacia crow_v2 antes de moverse.
-	owl_v2.look_at(destino)
-
-	# Mover hacia el destino.
 	owl_v2.global_position += direccion * velocidad_seguimiento * get_process_delta_time()
 
 # Función que ajusta a owl_v2 dentro de los rangos.
@@ -71,7 +65,3 @@ func actualizar_animacion():
 
 	# Actualiza la posición anterior.
 	owl_pos_anterior = owl_v2.global_position
-
-# Método para registrar si el jugador está controlando owl_v2.
-func set_jugador_moviendo(esta_moviendo: bool):
-	jugador_moviendo = esta_moviendo
