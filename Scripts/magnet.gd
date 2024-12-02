@@ -1,67 +1,62 @@
 extends Node
 
-@export var rango_maximo: float = 10.0  # Rango máximo en metros.
-@export var rango_minimo: float = 2.0   # Rango mínimo en metros.
-@export var velocidad_seguimiento: float = 3.0  # Velocidad a la que owl_v2 seguirá a crow_v2.
+#Variables Cambiables
+@export_category("Variables")
+@export var max_rango: float = 10.0  
+@export var min_rango: float = 2.0   
+@export var folllow_speed: float = 3.0  
 
-@onready var crow_v2 = get_node("../crow_v2")  # Ruta relativa para crow_v2.
-@onready var owl_v2 = get_node("../owl_v2")  # Ruta relativa para owl_v2.
-@onready var sonido_rango_max = crow_v2.get_node("Worried_AudioStreamPlayer3D")  # Sonido para rango máximo.
-@onready var sonido_rango_min = crow_v2.get_node("Angry_AudioStreamPlayer3D")  # Sonido para rango mínimo.
-@onready var owl_animation_tree = owl_v2.get_node("AnimationTree")  # AnimationTree de owl_v2.
+#Variables Importadas
+@onready var crow_v2 = get_node("../crow_v2") 
+@onready var owl_v2 = get_node("../owl_v2")  
+@onready var worried_max = crow_v2.get_node("Worried_AudioStreamPlayer3D") 
+@onready var angry_min = crow_v2.get_node("Angry_AudioStreamPlayer3D") 
+@onready var anim_owl = owl_v2.get_node("AnimationTree") 
 
-var owl_pos_anterior: Vector3  # Guarda la posición anterior de owl_v2 para calcular el movimiento.
+#Guardar posicion Owl para calculos posteriores
+var owl_og_pose: Vector3  
 
-# Función que verifica la distancia y maneja los sonidos.
+
 func _process(_delta):
 	var distancia = crow_v2.global_position.distance_to(owl_v2.global_position)
 
-	if distancia > rango_maximo:
-		manejar_sonido(sonido_rango_max, sonido_rango_min)  # Activar sonido máximo.
-		mover_owl_v2_hacia(crow_v2.global_position)
-	elif distancia < rango_minimo:
-		manejar_sonido(sonido_rango_min, sonido_rango_max)  # Activar sonido mínimo.
-		mover_owl_v2_a_rango(rango_minimo)
+	if distancia > max_rango:
+		manejar_sonido(worried_max, angry_min)  
+		move_owl_new(crow_v2.global_position)
+	elif distancia < min_rango:
+		manejar_sonido(angry_min, worried_max)  
+		move_owl_rango(min_rango)
 	else:
-		detener_sonidos()  # Detener ambos sonidos si está dentro del rango permitido.
+		detener_sonidos()  
 
-	# Actualizar animación según el movimiento.
 	actualizar_animacion()
 
-# Función para mover a owl_v2 hacia una posición.
-func mover_owl_v2_hacia(destino: Vector3):
-	# Movimiento hacia el destino.
+
+func move_owl_new(destino: Vector3):
 	var direccion = (destino - owl_v2.global_position).normalized()
-	owl_pos_anterior = owl_v2.global_position  # Guarda la posición actual antes de mover.
-	owl_v2.global_position += direccion * velocidad_seguimiento * get_process_delta_time()
+	owl_og_pose = owl_v2.global_position 
+	owl_v2.global_position += direccion * folllow_speed * get_process_delta_time()
 
-# Función que ajusta a owl_v2 dentro de los rangos.
-func mover_owl_v2_a_rango(rango_objetivo):
+func move_owl_rango(obj_rango):
 	var direccion = (crow_v2.global_position - owl_v2.global_position).normalized()
-	var nuevo_pos = crow_v2.global_position - direccion * rango_objetivo
-	mover_owl_v2_hacia(nuevo_pos)
+	var new_pose = crow_v2.global_position - direccion * obj_rango
+	move_owl_new(new_pose)
 
-# Función para manejar la reproducción de sonidos.
-func manejar_sonido(sonido_a_reproducir, sonido_a_detener):
-	if !sonido_a_reproducir.playing:
-		sonido_a_reproducir.play()
-	sonido_a_detener.stop()
+func manejar_sonido(play_sonido, stop_sonido):
+	if !play_sonido.playing:
+		play_sonido.play()
+	stop_sonido.stop()
 
-# Función para detener todos los sonidos.
 func detener_sonidos():
-	sonido_rango_max.stop()
-	sonido_rango_min.stop()
+	worried_max.stop()
+	angry_min.stop()
 
-# Función para actualizar la animación de owl_v2 según su movimiento.
 func actualizar_animacion():
-	# Calcula si owl_v2 se está moviendo.
-	var velocidad_actual = owl_v2.global_position.distance_to(owl_pos_anterior) / get_process_delta_time()
+	var actual_speed = owl_v2.global_position.distance_to(owl_og_pose) / get_process_delta_time()
 	
-	# Ajusta el parámetro del BlendSpace1D.
-	if velocidad_actual > 0.1:  # Si owl_v2 se está moviendo (velocidad significativa).
-		owl_animation_tree.set("parameters/Locomotion/blend_position", 1.0)  # Cambia a "walk".
-	else:  # Si no se mueve.
-		owl_animation_tree.set("parameters/Locomotion/blend_position", 0.0)  # Cambia a "idle".
+	if actual_speed > 0.1:  
+		anim_owl.set("parameters/Locomotion/blend_position", 1.0) 
+	else:  
+		anim_owl.set("parameters/Locomotion/blend_position", 0.0) 
 
-	# Actualiza la posición anterior.
-	owl_pos_anterior = owl_v2.global_position
+	owl_og_pose = owl_v2.global_position
