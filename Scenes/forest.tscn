@@ -31,6 +31,8 @@ _camera = NodePath("../Camera3D")
 
 [node name="Magnet" type="Node" parent="."]
 script = ExtResource("3_m6bot")
+rango_maximo = 15.0
+rango_minimo = 3.0
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -44,6 +46,8 @@ shape = SubResource("BoxShape3D_q402b")
 [node name="crow_v2" parent="." instance=ExtResource("3_mrm4d")]
 
 [node name="owl_v2" parent="." instance=ExtResource("4_7xk55")]
+_walking_speed = 6.0
+_acceleration = 10.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(0.999946, 0.0104194, 0, -0.0104194, 0.999946, 0, 0, 0, 1, 5.72, 2, 0)
