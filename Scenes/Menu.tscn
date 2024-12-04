@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://mw0ubw0vk5me"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_fk5gm"]
+[ext_resource type="Texture2D" uid="uid://c13dl2cinssmr" path="res://Assets/Menu/main.png" id="2_3d7cr"]
+[ext_resource type="Texture2D" uid="uid://dtsc0nq8mgtqm" path="res://Assets/Menu/logo.png" id="3_akc16"]
+[ext_resource type="Texture2D" uid="uid://crx5nnvt735bs" path="res://Assets/Menu/Pointer.png" id="4_6m2ik"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gc4iu"]
+texture = ExtResource("2_3d7cr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qymxu"]
+texture = ExtResource("3_akc16")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fk5gm")
+
+[node name="BGPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gc4iu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -81.0
+offset_right = -33.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="startButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../exitButton")
+theme_override_constants/h_separation = 0
+text = "start"
+
+[node name="exitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../startButton")
+theme_override_constants/h_separation = 0
+text = "exit"
+
+[node name="LogoPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -368.0
+offset_top = 13.0
+offset_right = -19.0
+offset_bottom = 164.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_qymxu")
+
+[node name="Pointer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 866.0
+offset_top = 250.0
+offset_right = 1061.0
+offset_bottom = 373.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_6m2ik")
+flip_h = true
+
+[connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/exitButton" to="." method="_on_exit_button_pressed"]
