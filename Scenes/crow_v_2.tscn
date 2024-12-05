@@ -1,9 +1,9 @@
 [gd_scene load_steps=34 format=4 uid="uid://xni8oy01d4ca"]
 
 [ext_resource type="Script" path="res://Scripts/crow.gd" id="1_6jgct"]
-[ext_resource type="Texture2D" uid="uid://dbu5hg21alv1m" path="res://Models/crow_v2_crow_v3_texture.png" id="2_q82ay"]
-[ext_resource type="AudioStream" uid="uid://j43704jiu5wg" path="res://Audio/angrycrow.wav" id="3_pni8g"]
-[ext_resource type="AudioStream" uid="uid://c2k7grg7q1jsx" path="res://Audio/worriedcrow.wav" id="4_0ne8e"]
+[ext_resource type="Texture2D" uid="uid://dbu5hg21alv1m" path="res://Assets/Models/crow_v2_crow_v3_texture.png" id="2_q82ay"]
+[ext_resource type="AudioStream" uid="uid://j43704jiu5wg" path="res://Assets/Audio/angrycrow.wav" id="3_pni8g"]
+[ext_resource type="AudioStream" uid="uid://c2k7grg7q1jsx" path="res://Assets/Audio/worriedcrow.wav" id="4_0ne8e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yrds"]
 resource_name = "crow_2.001"
