@@ -1,80 +1,55 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfflhqxd8ykcf"]
+[gd_scene load_steps=9 format=3 uid="uid://bfflhqxd8ykcf"]
 
+[ext_resource type="Script" path="res://Scripts/Forest.gd" id="1_ikejm"]
 [ext_resource type="Script" path="res://Scripts/player_owl.gd" id="1_req0d"]
 [ext_resource type="Script" path="res://Scripts/player_crow.gd" id="2_sod4a"]
-[ext_resource type="Script" path="res://Scripts/magnet.gd" id="3_m6bot"]
-[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow_v_2.tscn" id="3_mrm4d"]
+[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow2.tscn" id="3_mrm4d"]
 [ext_resource type="PackedScene" uid="uid://t1kehgnujdqv" path="res://Scenes/owl_v_2.tscn" id="4_7xk55"]
+[ext_resource type="PackedScene" uid="uid://beauep70hnmu" path="res://Scenes/Map.tscn" id="6_r2j02"]
+[ext_resource type="Texture2D" uid="uid://eeq4d8sr8ppw" path="res://Assets/Textures/snow.png" id="7_q4w4i"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbuqq"]
-albedo_color = Color(0.279095, 0.408811, 0.224335, 1)
-emission_enabled = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_a2jal"]
-material = SubResource("StandardMaterial3D_bbuqq")
-size = Vector2(50, 50)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q402b"]
-size = Vector3(50, 0, 50)
-
-[sub_resource type="SphereMesh" id="SphereMesh_g7u1t"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ie4w5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_735am"]
+albedo_texture = ExtResource("7_q4w4i")
+uv1_scale = Vector3(0.005, 0.005, 0.005)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [node name="Forest" type="Node3D"]
+script = ExtResource("1_ikejm")
 
 [node name="Player_Owl" type="Node" parent="." node_paths=PackedStringArray("_character2", "_camera")]
 script = ExtResource("1_req0d")
 _character2 = NodePath("../owl_v2")
-_camera = NodePath("../Camera3D")
+_camera = NodePath("../crow_v2/Camera3D")
 
 [node name="Player_Crow" type="Node" parent="." node_paths=PackedStringArray("_character1", "_camera")]
 script = ExtResource("2_sod4a")
 _character1 = NodePath("../crow_v2")
-_camera = NodePath("../Camera3D")
-
-[node name="Magnet" type="Node" parent="."]
-script = ExtResource("3_m6bot")
-max_rango = 12.0
-min_rango = 4.0
-
-[node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_a2jal")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_q402b")
+_camera = NodePath("../crow_v2/Camera3D")
 
 [node name="crow_v2" parent="." instance=ExtResource("3_mrm4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.909, 7.40364, 139.541)
+_walking_speed = 15.0
+_acceleration = 15.0
+_deceleration = 20.0
+_mass = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="crow_v2"]
+transform = Transform3D(0.587785, 0.572061, -0.572062, 0, 0.707107, 0.707107, 0.809017, -0.415627, 0.415627, -66.935, 82.5915, 48.5294)
+projection = 1
+current = true
+size = 45.6582
 
 [node name="owl_v2" parent="." instance=ExtResource("4_7xk55")]
-_walking_speed = 8.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.888, 10.6727, 138.002)
+_walking_speed = 10.0
 _acceleration = 10.0
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(0.999946, 0.0104194, 0, -0.0104194, 0.999946, 0, 0, 0, 1, 5.72, 2, 0)
-use_collision = true
-size = Vector3(1, 4, 1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.69, 4, 0)
-use_collision = true
-size = Vector3(1, 8, 1)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.984808, 0.0241672, -0.171958, 0, 0.990268, 0.139173, 0.173648, -0.137059, 0.975224, -1.38322, 7.56233, 17.6757)
+_deceleration = 15.0
+_mass = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.99749, -0.00868615, -0.0702662, 0.0605274, 0.619502, 0.782658, 0.0367318, -0.784947, 0.618473, 0.664222, 19.0218, 10.8413)
+transform = Transform3D(0.64679, 0.120622, -0.753069, 0, 0.987414, 0.158158, 0.762668, -0.102295, 0.638649, -150.897, 26.3576, 141.538)
+sky_mode = 1
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["RigidBody3d"]]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.645, 1, 0)
-mesh = SubResource("SphereMesh_g7u1t")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.645, 1, 0)
-shape = SubResource("SphereShape3D_ie4w5")
+[node name="CSGBox3D" parent="." instance=ExtResource("6_r2j02")]
+material = SubResource("StandardMaterial3D_735am")
