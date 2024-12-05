@@ -19,7 +19,7 @@ script = ExtResource("1_ikejm")
 
 [node name="Player_Owl" type="Node" parent="." node_paths=PackedStringArray("_character2", "_camera")]
 script = ExtResource("1_req0d")
-_character2 = NodePath("../owl_v2")
+_character2 = NodePath("../crow_v2/owl_v2")
 _camera = NodePath("../crow_v2/Camera3D")
 
 [node name="Player_Crow" type="Node" parent="." node_paths=PackedStringArray("_character1", "_camera")]
@@ -27,15 +27,8 @@ script = ExtResource("2_sod4a")
 _character1 = NodePath("../crow_v2")
 _camera = NodePath("../crow_v2/Camera3D")
 
-[node name="owl_v2" parent="." instance=ExtResource("4_7xk55")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.754, 22.3322, 145.818)
-_walking_speed = 10.0
-_acceleration = 10.0
-_deceleration = 15.0
-_mass = 5.0
-
 [node name="crow_v2" parent="." instance=ExtResource("3_mrm4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.775, 19.0631, 147.357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.909, 7.40364, 139.541)
 _walking_speed = 15.0
 _acceleration = 15.0
 _deceleration = 20.0
@@ -47,8 +40,15 @@ projection = 1
 current = true
 size = 45.6582
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.64679, 0.120622, -0.753069, 0, 0.987414, 0.158158, 0.762668, -0.102295, 0.638649, -150.897, 26.3576, 141.538)
+[node name="owl_v2" parent="crow_v2" instance=ExtResource("4_7xk55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.021, 3.2691, -1.539)
+_walking_speed = 10.0
+_acceleration = 10.0
+_deceleration = 15.0
+_mass = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="crow_v2"]
+transform = Transform3D(0.64679, 0.120622, -0.753069, 0, 0.987414, 0.158158, 0.762668, -0.102295, 0.638649, -31.9883, 18.954, 1.9967)
 sky_mode = 1
 
 [node name="CSGBox3D" parent="." instance=ExtResource("6_r2j02")]
