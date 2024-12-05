@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://np5wwaq36tiv"
-path="res://.godot/imported/cajaprueba.glb-681d780df19ebd9273aa98fbe75bbd35.scn"
+path="res://.godot/imported/cajaprueba.glb-bab67b6132a1306a0e2618cccb1821ec.scn"
 
 [deps]
 
-source_file="res://Models/cajaprueba.glb"
-dest_files=["res://.godot/imported/cajaprueba.glb-681d780df19ebd9273aa98fbe75bbd35.scn"]
+source_file="res://Assets/Models/cajaprueba.glb"
+dest_files=["res://.godot/imported/cajaprueba.glb-bab67b6132a1306a0e2618cccb1821ec.scn"]
 
 [params]
 

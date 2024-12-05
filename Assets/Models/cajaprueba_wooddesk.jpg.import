@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyhw2p7seauo3"
-path.s3tc="res://.godot/imported/cajaprueba_wooddesk.jpg-0e0faa7926bf165f0e2911f8639592b2.s3tc.ctex"
+path.s3tc="res://.godot/imported/cajaprueba_wooddesk.jpg-17a230965ee1d6b3ef0ac906a4abb929.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Models/cajaprueba_wooddesk.jpg"
-dest_files=["res://.godot/imported/cajaprueba_wooddesk.jpg-0e0faa7926bf165f0e2911f8639592b2.s3tc.ctex"]
+source_file="res://Assets/Models/cajaprueba_wooddesk.jpg"
+dest_files=["res://.godot/imported/cajaprueba_wooddesk.jpg-17a230965ee1d6b3ef0ac906a4abb929.s3tc.ctex"]
 
 [params]
 
