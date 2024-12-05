@@ -15,6 +15,7 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [node name="Forest" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.8023)
 script = ExtResource("1_ikejm")
 
 [node name="Player_Owl" type="Node" parent="." node_paths=PackedStringArray("_character2", "_camera")]
