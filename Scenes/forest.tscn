@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Forest.gd" id="1_ikejm"]
 [ext_resource type="Script" path="res://Scripts/player_owl.gd" id="1_req0d"]
 [ext_resource type="Script" path="res://Scripts/player_crow.gd" id="2_sod4a"]
-[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow2.tscn" id="3_mrm4d"]
+[ext_resource type="PackedScene" uid="uid://xni8oy01d4ca" path="res://Scenes/crow_v_2.tscn" id="3_mrm4d"]
 [ext_resource type="PackedScene" uid="uid://t1kehgnujdqv" path="res://Scenes/owl_v_2.tscn" id="4_7xk55"]
 [ext_resource type="PackedScene" uid="uid://beauep70hnmu" path="res://Scenes/Map.tscn" id="6_r2j02"]
 [ext_resource type="Texture2D" uid="uid://eeq4d8sr8ppw" path="res://Assets/Textures/snow.png" id="7_q4w4i"]
